@@ -2,6 +2,7 @@ var nopt = require('nopt'),
     os = require('os'),
     props = require('./lib/properties'),
     compileHandler = require('./lib/compile').compileHandler,
+    compileTest = require('./lib/compile').compileTest,
     express = require('express'),
     child_process = require('child_process'),
     http = require('http'),
@@ -212,6 +213,7 @@ if (cluster.isMaster){
 	        .use(bodyParser.json())
 	        .get('/client-options.js', clientOptionsHandler(compilers,null))
 	        .get('/test',showWorker)
+	        .get('/compileTest',compileTest(compilers))
 	        .post('/compile', compileHandler(compilers));
 	    //不使用的话会无法解析req.body
 	    webServer.use(bodyParser.urlencoded({
