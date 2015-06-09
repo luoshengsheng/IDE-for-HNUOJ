@@ -127,7 +127,7 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
         
         //去掉原先的内容
         $('.outputData').val("");
-        $('.compiler-output :gt(0)').remove();
+        $('.compiler-error :gt(0)').remove();
         editor.getSession().clearAnnotations();
 
         //删除原先的gutter修饰
@@ -142,6 +142,10 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
         //解析编译器返回信息
         if (runningStdout) {
             $('.outputData').val(runningStdout);
+            $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
+            $(".inputOutput ul li.active").removeClass("active");
+            $("#showOnput").addClass("active");
+            $(".compiler-onput").removeClass("hidden");
         }else if(stderr){
         	stderr +="\n请检查input，代码是否正确！";
         	// if(stderr.match(/undefined reference to `main'/)){
@@ -157,7 +161,7 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
                     msg = "Too many output lines...truncated";
                 }
                 numLines++;
-                var elem = $('.compiler-output .template').clone().appendTo('.compiler-output').removeClass('template');
+                var elem = $('.compiler-error .template').clone().appendTo('.compiler-error').removeClass('template');
                 var clazz = "error";
                 if (lineNum) {
                     // console.log(msg);
@@ -188,9 +192,14 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
             });
             //添加错误提示浮动框
             editor.getSession().setAnnotations(errHtmlArray);
+            $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
+            $(".inputOutput ul li.active").removeClass("active");
+            $("#showError").addClass("active");
+            $(".compiler-error").removeClass("hidden");
         }else{
-            $('.compiler-output .template').clone().appendTo('.compiler-output').removeClass('template').text("compile OK!");
+            $('.compiler-error .template').clone().appendTo('.compiler-error').removeClass('template').text("compile OK!");
         }
+        
     }
 
     function onChange() {
@@ -212,8 +221,8 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
             setSetting('inputData',data.inputData);
             var stringifiedReq = JSON.stringify(data);
             if (stringifiedReq == lastRequest) return;
-            $('.result .compiler-output :visible').remove();
-            var elem = $('.result .compiler-output .template').clone().appendTo('.result .compiler-output').removeClass('template');
+            $('.result .compiler-error :visible').remove();
+            var elem = $('.result .compiler-error .template').clone().appendTo('.result .compiler-error').removeClass('template');
             elem.text("compile ........");
             lastRequest = stringifiedReq;
             data.timestamp = new Date();

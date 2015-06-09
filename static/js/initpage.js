@@ -3,6 +3,15 @@ var currentCompiler = null;
 var allCompilers = [];
 
 function initialise(options) {
+	//input-output
+	$(".inputOutput ul li").click(function(){
+        $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
+        $(".inputOutput ul li.active").removeClass("active");
+        $(this).addClass("active");
+        var className = $(this).attr("name");
+        $("."+className).removeClass("hidden");
+    });
+
 	$("#judgeProblemButton").click(function() {
         $('#judgeProblem').modal('hide');
         judgeProblem();
@@ -19,7 +28,7 @@ function initialise(options) {
 	$(".panel-body").css({
 		height: height
 	})
-	$('#ioContent').menuToggle({
+	$('#inputOutput').menuToggle({
 		'ctrlBtn': 'ioContentHide',
 		'speed': 300,
 		'height': 200,

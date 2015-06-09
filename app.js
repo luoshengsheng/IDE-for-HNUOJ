@@ -179,15 +179,15 @@ function findCompilers() {
 
 //*******begin 启动服务器------------------------------------------------------------
 //
-if (cluster.isMaster){
-  	// 繁衍工人进程，数量跟系统中的CPU数量一样
-  	for (var i = 0, n = os.cpus().length; i < n; i += 1){
-    	cluster.fork();
-	}
-	cluster.on('listening',function(worker,address){
-    	console.log('listening: worker ' + worker.process.pid +', Address: '+address.address+":"+address.port);
-	});
-}else{
+// if (cluster.isMaster){
+//   	// 繁衍工人进程，数量跟系统中的CPU数量一样
+//   	for (var i = 0, n = os.cpus().length; i < n; i += 1){
+//     	cluster.fork();
+// 	}
+// 	cluster.on('listening',function(worker,address){
+//     	console.log('listening: worker ' + worker.process.pid +', Address: '+address.address+":"+address.port);
+// 	});
+// }else{
 	findCompilers().then(function (compilers) {
 		
 	      // 启动程序
@@ -235,7 +235,7 @@ if (cluster.isMaster){
 	}).catch(function (err) {
 	    console.log("Error: " + err.stack);
 	});
-}
+// }
 function showWorker(req,res){
 	console.log('worker'+cluster.worker.id);
 	res.end('worker'+cluster.worker.id);
