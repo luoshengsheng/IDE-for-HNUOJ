@@ -66,6 +66,7 @@
 }
 .panel{
     margin-bottom: 10px;
+    border-radius: 0 0 4px 4px;
 }
 .panel-info{
     width: 100%;
