@@ -1,5 +1,6 @@
 # IDE-for-oj
 graduation project
+本项目参考了GCC-explorer项目
 #环境配置说明
 ##系统运行在liunx系统上，不支持windows系统
 ##安装node.Js
@@ -23,6 +24,15 @@ graduation project
 1. 安装GCC，G++编译器
 2. 在config文件夹中更改配置文件
 3. 如何配置--请看程序包中etc目录下的config配置文件备注
+
+#安全使用系统说明
+##由于需要运行用户编写的程序，为了防止用户提交恶意代码对系统造成伤害，请务必使用最低权限liunx账号运行系统
+##如何创建使用低权限账户
+1. 使用 sudo adduser username(自己命名) 然后设定密码
+2. 登录账号，进入到home目录git clone 项目，进行npm install
+3. 切换回sudo用户，进入项目目录的上一级目录，更改项目文件的所有者为nobody:nogroup
+sudo chown nobody:nogroup -R 项目文件名
+4. 登录刚才新建的用户，进入项目文件用forever或者node启动服务
 
 #功能说明
 1. 能进行更改主题theme,字体大小font
