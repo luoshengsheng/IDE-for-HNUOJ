@@ -141,11 +141,15 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
         var numLines = 0;
         //解析编译器返回信息
         if (runningStdout) {
+
             $('.outputData').val(runningStdout);
-            $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
-            $(".inputOutput ul li.active").removeClass("active");
-            $("#showOnput").addClass("active");
-            $(".compiler-onput").removeClass("hidden");
+            if ($(".inputOutput ul li.active").attr("name") != "compiler-ontput") {
+                $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
+                $(".inputOutput ul li.active").removeClass("active");
+                $("#showOntput").addClass("active");
+                $(".compiler-ontput").removeClass("hidden"); 
+            };
+            
         }else if(stderr){
         	stderr +="\n请检查input，代码是否正确！";
         	// if(stderr.match(/undefined reference to `main'/)){
@@ -192,10 +196,13 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
             });
             //添加错误提示浮动框
             editor.getSession().setAnnotations(errHtmlArray);
-            $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
-            $(".inputOutput ul li.active").removeClass("active");
-            $("#showError").addClass("active");
-            $(".compiler-error").removeClass("hidden");
+            if ($(".inputOutput ul li.active").attr("name") != "compiler-error") {
+                $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
+                $(".inputOutput ul li.active").removeClass("active");
+                $("#showError").addClass("active");
+                $(".compiler-error").removeClass("hidden");  
+            };
+            
         }else{
             $('.compiler-error .template').clone().appendTo('.compiler-error').removeClass('template').text("compile OK!");
         }
@@ -236,7 +243,7 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
                     onCompileResponse(data, result);
                 }
             });
-        }, 750);
+        }, 1000);
     }
 
 

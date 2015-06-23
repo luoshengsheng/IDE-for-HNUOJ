@@ -1,7 +1,8 @@
 # IDE-for-oj
 graduation project
 #环境配置说明
-##安装nodeJs
+##系统运行在liunx系统上，不支持windows系统
+##安装node.Js
 1. 直接apt-get 或者yum 安装 或者自己编译安装也许
 2. 安装node npm
 3. 安装forever 用于管理node的进程后台运行
@@ -17,29 +18,19 @@ graduation project
 - JAVA_HOME-----`JDK安装路径`		
 - CLASS_PATH----`.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar`
 - PATH----------`$JAVA_HOME/bin:.`
-- PATH变量中要添加当前路径(.)
 
 ##安装C,C++环境
 1. 安装GCC，G++编译器
 2. 在config文件夹中更改配置文件
-3. 如何配置--请看配置文件备注
-
-##安装mongodb
-1. 可以进行源码安装也可以进行get安装
-2. apt-get install mongodb-server
-3. mongod -dbpath /data/db/
-4. 如果想后台运行 则用 mongod --fork -dbpath /data/db/ 或者 mongod -dbpath /data/db/ &  
-5. 如果是前台运行，直接关闭shell就可以，后台运行的关闭：先pkill mongod然后进入mongo shell 执行db.shutdownServer
+3. 如何配置--请看程序包中etc目录下的config配置文件备注
 
 #功能说明
-1. 更改theme,font
-2. 正则查找,按ctrl+f
-3. 正则替换,按两次ctrl+f
+1. 能进行更改主题theme,字体大小font
+2. 查找,按ctrl+f
+3. 替换,按两次ctrl+f
 4. undo,按ctrl+z
 5. 代码自动补全
 6. 多语言java,C,C++
 7. 代码检错
 8. 黑箱测试
-9. 存储文件
-10.用户登录注册
 
