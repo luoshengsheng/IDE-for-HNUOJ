@@ -143,12 +143,12 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
         if (runningStdout) {
 
             $('.outputData').val(runningStdout);
-            if ($(".inputOutput ul li.active").attr("name") != "compiler-ontput") {
+            //if ($(".inputOutput ul li.active").attr("name") != "compiler-ontput") {
                 $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
                 $(".inputOutput ul li.active").removeClass("active");
                 $("#showOntput").addClass("active");
                 $(".compiler-ontput").removeClass("hidden"); 
-            };
+            //};
             
         }else if(stderr){
         	stderr +="\n请检查input，代码是否正确！";
@@ -196,12 +196,12 @@ function Compiler(domRoot, windowLocalPrefix, lang) {
             });
             //添加错误提示浮动框
             editor.getSession().setAnnotations(errHtmlArray);
-            if ($(".inputOutput ul li.active").attr("name") != "compiler-error") {
+            //if ($(".inputOutput ul li.active").attr("name") != "compiler-error") {
                 $("."+$(".inputOutput ul li.active").attr("name")).addClass("hidden"); 
                 $(".inputOutput ul li.active").removeClass("active");
                 $("#showError").addClass("active");
                 $(".compiler-error").removeClass("hidden");  
-            };
+            //};
             
         }else{
             $('.compiler-error .template').clone().appendTo('.compiler-error').removeClass('template').text("compile OK!");
